@@ -5,7 +5,7 @@ $(document).ready(()=>{
     var destVal
     $.ajax({
         type: 'GET',
-        url: "http://localhost:3000/var_list",
+        url: "https://murmuring-plains-79418.herokuapp.com:5000/var_list",
         success: (results)=>{
             results.forEach((value)=> {
                 $( "#source_units" ).append( '<a class="dropdown-item" id="src_'+value+'" href="#">'+value+'</a>' );   
@@ -16,7 +16,7 @@ $(document).ready(()=>{
         var selectedUnit=$(this).text()
         sourceUnit = selectedUnit
         $("#formUserInputName").text("Input in: "+sourceUnit)
-        $.post("http://localhost:3000/var_list",{name:selectedUnit},(results)=>{
+        $.post("https://murmuring-plains-79418.herokuapp.com:5000/var_list",{name:selectedUnit},(results)=>{
             $( "#dest_units" ).empty()
             results.forEach((value)=> { 
                 $( "#dest_units" ).append( '<a class="dropdown-item" id="dest_'+value.name+'" href="#">'+value.name+'</a>' );   
@@ -29,7 +29,7 @@ $(document).ready(()=>{
         $("#formUserResultName").text("Result in: "+destUnit)
     })
     $('#formUserInput').on('keyup',function(){
-        $.post("http://localhost:3000/calculate",{
+        $.post("https://murmuring-plains-79418.herokuapp.com:5000/calculate",{
             sourceunit :sourceUnit,
             destunit : destUnit,
             valtocalculate :$(this).val()

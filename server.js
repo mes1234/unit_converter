@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const fs = require('fs')
 const app  = express()
+const PORT = process.env.PORT || 5000
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
@@ -10,7 +11,7 @@ var path = require('path');
 var units
 app.get('/', (req,res)=> res.sendFile(path.join(__dirname, "static/index.html")))
 app.use(express.static('static'))
-app.listen(3000,()=>console.log('running express server'))
+app.listen(PORT,()=>console.log('running express server'))
 
 function getBaseConversion(type,obj){
     var currentUnit = obj.filter(checkKey,{name:type})
